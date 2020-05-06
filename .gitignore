@@ -1,0 +1,11 @@
+# VIRTUAL ENVIRONMENT
+env
+
+# VSCODE FILES
+.vscode
+
+# DATABASE
+db.sqlite3
+
+# CACHE
+__pycache__
