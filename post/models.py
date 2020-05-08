@@ -49,7 +49,7 @@ class Post(models.Model):
     users_liked = models.ManyToManyField(get_user_model(), related_name="users_liked", blank=True)
     friends_tagged = models.ManyToManyField(get_user_model(), related_name="friends_tagged", blank=True)
     feeling = models.ForeignKey(PostFeeling, on_delete=models.CASCADE, blank=True, null=True)
-    activity = models.ForeignKey(PostActivity, on_delete=models.CASCADE, blank=True, null=True)
+    sub_activity = models.ForeignKey(PostSubActivity, on_delete=models.CASCADE, blank=True, null=True)
     location = models.URLField("Location", blank=True, null=True)
 
     created = models.DateTimeField(auto_now_add=True)
@@ -105,10 +105,11 @@ class Comment(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.post
+        return f'{self.user.username}: {self.post.content}'
 
 
 class SubComment(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=False)
     comment = models.ForeignKey(Comment, related_name="sub_comments", on_delete=models.CASCADE, blank=False)
     content = models.TextField("SubComment Content", max_length=8192, blank=False)
 
@@ -116,4 +117,4 @@ class SubComment(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.comment
+        return f'{self.user.username}: {self.comment.content}'
