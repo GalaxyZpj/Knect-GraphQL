@@ -8,13 +8,12 @@ class CreateFeeling(graphene.Mutation):
     """ Creates Feeling for the Post Interface, can only be accessed by superuser """
     class Arguments:
         name = graphene.String(required=True)
-        emoticon = Upload(required=False)
+        emoticon = Upload(required=True)
 
     expression = graphene.Field(PostFeelingType)
 
     @superuser_required
-    def mutate(self, info, name, emoticon=None, **kwargs):
-        print('\n\n', emoticon)
+    def mutate(self, info, name, emoticon, **kwargs):
         expression = PostFeeling.objects.create(name=name, emoticon=emoticon)
         return CreateFeeling(expression=expression)
 

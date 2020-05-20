@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     # LIBRARIES
     'django_filters',
     'graphene_django',
+    'corsheaders',
     # APPS
     'user',
     'post',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +139,8 @@ GRAPHENE = {
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
