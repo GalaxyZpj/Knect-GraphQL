@@ -1,20 +1,26 @@
-aniso8601==7.0.0
-asgiref==3.2.7
-autopep8==1.5.2
-Django==3.0.6
-django-cors-headers==3.2.1
-django-filter==2.2.0
-django-graphql-jwt==0.3.1
+# aniso8601>=7.0.0
+aniso8601<=7,>=3
+asgiref>=3.2.7
+autopep8>=1.5.2
+Django>=3.0.6
+django-cors-headers>=3.2.1
+django-filter>=2.2.0
+django-graphql-jwt>=0.3.1
 graphene==2.1.8
-graphene-django==2.9.1
-graphene-file-upload==1.2.2
-graphql-core==2.3.1
-graphql-relay==2.0.1
-promise==2.3
-pycodestyle==2.5.0
-PyJWT==1.7.1
-pytz==2020.1
-Rx==1.6.1
-singledispatch==3.4.0.3
-six==1.14.0
-sqlparse==0.3.1
+# graphene>=3.0.0b2
+# graphene-django>=2.9.1
+graphene-django==2.10.1
+graphene-file-upload>=1.2.2
+# graphql-core>=2.3.1
+graphql-core<3,>=2.1
+# graphql-relay>=2.0.1
+graphql-relay<3,>=2
+promise>=2.3
+pycodestyle>=2.5.0
+PyJWT>=1.7.1
+pytz>=2020.1
+# Rx>=1.6.1
+rx<2,>=1.6
+singledispatch>=3.4.0.3
+six>=1.14.0
+sqlparse>=0.3.1

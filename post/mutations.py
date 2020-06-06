@@ -53,6 +53,7 @@ class CreatePost(graphene.Mutation):
         post_data = PostInput(required=True)
 
     post = graphene.Field(PostType)
+    success = graphene.Boolean()
 
     @login_required
     def mutate(self, info, post_data=None):
@@ -65,7 +66,9 @@ class CreatePost(graphene.Mutation):
             location=post_data.location
         )
         post.save()
-        post.friends_tagged.add(*post_data.friends_tagged)
+        
+        if post_data.friends_tagged:
+            post.friends_tagged.add(*post_data.friends_tagged)
 
         if post_data.images:
             for image in post_data.images:
@@ -79,7 +82,7 @@ class CreatePost(graphene.Mutation):
             for gif in post_data.gifs:
                 PostImage.objects.create(post=post, gif=gif)
 
-        return CreatePost(post=post)
+        return CreatePost(post=post, success=True)
 
 
 class DeletePost(graphene.Mutation):
